@@ -24,9 +24,7 @@ function App() {
   const [page, setPage] = useState(null);
   const [search, setSearch] = useState("");
   const [results, setResults] = useState(null);
-  useEffect(() => {
-    console.log(page);
-  }, [page]);
+
   useEffect(() => {
     window
       .fetch(`https://graphql.contentful.com/content/v1/spaces/6ou5r9n0gkfq/`, {
