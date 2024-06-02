@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import "./App.css";
 
 const query = `
@@ -68,9 +68,10 @@ function App() {
         <input type="text" placeholder="search" onChange={handleChange} />
         <button type="submit">search</button>
       </form>
+      <p>Pytań w puli: {page.length}</p>
       {results &&
-        results.map((result) => (
-          <>
+        results.map((result, i) => (
+          <Fragment key={i}>
             <h2>{result.title}</h2>
             {result.assetsCollection.items.length > 0 &&
               result.assetsCollection.items.map((asset, i) => (
@@ -86,17 +87,13 @@ function App() {
                 }}
                 key={i}
               >
-                {String.fromCharCode(97 + i)}) {answer}
+                {answer}
+                {/* {String.fromCharCode(97 + i)})  */}
               </p>
             ))}
-          </>
+          </Fragment>
         ))}
 
-      {!results && (
-        <>
-          <p>Pytań w puli: {page.length}</p>
-        </>
-      )}
       {/* {!results &&
         page.map((question) => (
           <>
